@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "mfe.container.fullname" . }}-nginx-config
+  labels:
+    app: mfe
+    release: {{ .Release.Name }}
+data:
+  config: |
+{{ include "mfe.nginx-config" .Values.nginx.container | indent 4 }}

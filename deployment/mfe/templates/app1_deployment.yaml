@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "mfe.app1.fullname" . }}
+  labels:
+    app: mfe
+    container: app1
+    release: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mfe
+      container: app1
+  template:
+    metadata:
+      labels:
+        app: mfe
+        container: app1
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: app1
+          image: "{{ .Values.images.app1.repository }}:{{ .Values.images.app1.tag }}"
+          imagePullPolicy: {{ .Values.images.app1.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          volumeMounts:
+            - name: nginx-config
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: default.conf
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: {{ include "mfe.app1.fullname" . }}-nginx-config
+            items:
+              - key: config
+                path: default.conf

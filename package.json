@@ -4,11 +4,20 @@
   "description": "Test app to familiarize with Micro Frontends",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve:app1": "cd app1/dist; python3 -m http.server 8081",
+    "serve:container": "cd container/dist; python3 -m http.server 8080",
+    "build:all": "npx lerna run build",
+    "build:all:docker": "npx lerna run build:docker"
   },
   "author": "Matteo Scandolo",
   "license": "Apache-2.0",
   "devDependencies": {
-    "create-mf-app": "^1.0.15"
-  }
+    "create-mf-app": "^1.0.15",
+    "lerna": "^6.4.0"
+  },
+  "workspaces": [
+    "app1",
+    "container"
+  ]
 }
