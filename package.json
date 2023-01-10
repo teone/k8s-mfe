@@ -1,0 +1,14 @@
+{
+  "name": "micro-fe",
+  "version": "0.1.0-dev",
+  "description": "Test app to familiarize with Micro Frontends",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matteo Scandolo",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "create-mf-app": "^1.0.15"
+  }
+}
