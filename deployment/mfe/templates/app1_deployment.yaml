@@ -12,11 +12,13 @@ spec:
     matchLabels:
       app: mfe
       container: app1
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
         app: mfe
         container: app1
+        release: {{ .Release.Name }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

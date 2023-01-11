@@ -19,3 +19,6 @@ npm run build:all:docker
 ```
 
 Install the helm-chart:
+```shell
+helm upgrade --install mfe ./deployment/mfe
+```

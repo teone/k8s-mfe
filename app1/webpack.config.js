@@ -4,7 +4,10 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const deps = require("./package.json").dependencies;
 module.exports = {
   output: {
-    publicPath: "http://localhost:8081/",
+    // NOTE this public path needs to match:
+    // - the ModuleFederationPlugin remote config in the container
+    // - the proxy location in the container nginx config (helm chart)
+    publicPath: process.env.NODE_ENV === "production" ? "/app1/" : "http://localhost:8081/",
   },
 
   resolve: {

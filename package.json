@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve:app1": "cd app1/dist; python3 -m http.server 8081",
     "serve:container": "cd container/dist; python3 -m http.server 8080",
-    "build:all": "npx lerna run build",
+    "build:all": "NODE_ENV=production npx lerna run build",
     "build:all:docker": "npx lerna run build:docker"
   },
   "author": "Matteo Scandolo",

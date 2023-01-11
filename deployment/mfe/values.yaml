@@ -22,5 +22,10 @@ services:
 
 nginx:
   container:
-    rewrites: []
+    rewrites:
+      - location: "/app1/"
+        rewrite:
+          source: "/app1/(.*)"
+          dest: "/$1"
+        proxy_pass: "http://mfe-mfe-app1.default.svc:80"
   app1: {}
