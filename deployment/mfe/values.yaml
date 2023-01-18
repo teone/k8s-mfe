@@ -28,4 +28,10 @@ nginx:
           source: "/app1/(.*)"
           dest: "/$1"
         proxy_pass: "http://mfe-mfe-app1.default.svc:80"
-  app1: {}
+  app1:
+    rewrites:
+      - location: "/app1/"
+        rewrite:
+          source: "/app1/(.*)"
+          dest: "/$1"
+        proxy_pass: "http://mfe-mfe-app1.default.svc:80"
